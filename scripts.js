@@ -33,7 +33,7 @@ function getTaskContainerByStatus(status) {
   return column ? column.querySelector(".tasks-container") : null;
 }
 
-/*Clears all existing task-divs from all task containers.*/
+//Clears all existing task-divs from all task containers.
 function clearExistingTasks() {
   document.querySelectorAll(".tasks-container").forEach((container) => {
     container.innerHTML = "";
@@ -83,9 +83,12 @@ function setupModalCloseHandler() {
   });
 }
 
-/*Initializes the task board and modal handlers.*/
+//Initializes the task board and modal handlers.
 function initTaskBoard() {
   clearExistingTasks();
   renderTasks(initialTasks);
   setupModalCloseHandler();
 }
+
+// Wait until DOM is fully loaded
+document.addEventListener("DOMContentLoaded", initTaskBoard);
