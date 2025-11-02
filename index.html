@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.svg"/> <!-- Add favicon in tabs title -->
+    <title>Kanban Task Management</title>
+    <script src="scripts.js" defer></script>
+  </head>
+  <body>
+    <!-- Navigation Sidebar: Contains the logo, navigation links for boards, and theme toggle. -->
+    <nav class="side-nav-bar">
+      <div class="nav-logo-div">
+        <img class="nav-logo" src="logo.png"/>
+      </div>
+      <div class="nav-boards-div">
+        <p class="nav-all-boards">All boards (1)</p>
+        <button class="nav-toggle">Launch Career</button>
+      </div>
+    </nav>
+
+    <!-- Main Layout: Header with board title, add task button, and main content area for task columns. -->
+    <div class="main-layout-container">
+      <header class="launch-header">
+        <div class="launch-header-div">
+          <img class="favicon-mobile" src="favicon.svg"/> 
+          <h2 class="launch-title">Launch Career</h2>
+        </div>
+      </header>
+
+      <div class="main-tasks-container">
+        <main class="tasks-grid">
+          <!-- Task Columns: Display tasks grouped by status (TODO, DOING, DONE). -->
+          <div class="column-div todo" data-status="todo"> 
+            <div class="todo-status">
+              <p class="todo-dot"></p>
+              <p class="todo-title">Todo (4)</p>
+            </div>
+            <!-- Tasks container for TODO -->
+            <div class="card-container">
+              <div class="card">Launch Epic Career 🚀</div>
+              <div class="card">Conquer React ⚛️</div>
+              <div class="card">Understanding Databases ⚙️</div>
+              <div class="card">Crush Frameworks 🖼️</div>
+            </div>
+          </div>
+          <!-- DOING Column -->
+          <div class="column-div doing" data-status="doing">
+            <div class="doing-status">
+              <p class="doing-dot"></p>
+              <p class="doing-title">Doing (2)</p>
+            </div>
+            <!-- Tasks container for DOING -->
+            <div class="card-container">
+              <div class="card">Master JavaScript 💛</div>
+              <div class="card">Never Give Up 🏆</div>
+            </div>
+          </div>
+          <!-- DONE Column -->
+          <div class="column-div done" data-status="done">
+            <div class="done-status">
+              <p class="done-dot"></p>
+              <p class="done-title">Done (2)</p>
+            </div>
+            <!-- Tasks container for DONE -->
+            <div class="card-container">
+              <div class="card">Explore ES6 Features 🚀</div>
+              <div class="card">Have fun 🥳</div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
