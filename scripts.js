@@ -72,3 +72,20 @@ function openTaskModal(task) {
 
   modal.showModal();
 }
+
+
+function setupModalCloseHandler() {
+  const modal = document.getElementById("task-modal");
+  const closeBtn = document.getElementById("close-modal-btn");
+
+  closeBtn.addEventListener("click", () => {
+    modal.close();
+  });
+}
+
+/*Initializes the task board and modal handlers.*/
+function initTaskBoard() {
+  clearExistingTasks();
+  renderTasks(initialTasks);
+  setupModalCloseHandler();
+}
