@@ -1,0 +1,242 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --main-text-color: rgb(0, 1, 18);
+  --subheading-grey-color: rgb(130, 143, 163);
+  --border-grey-color: rgb(228, 235, 250);
+  --main-theme-color: rgb(99, 95, 199);
+  --background-white-color: #fff;
+  --background-offwhite-color: rgb(244, 247, 253);
+  --todo-dot-color: #49c4e5;
+  --doing-dot-color: #8471f2;
+  --done-dot-color: #67e2ae;
+}
+
+body {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  color: var(--main-text-color);
+  font-size: 15px;
+  font-weight: bold;
+  margin: 0;
+  display: flex; /*layout to span horizontally*/
+  width: 100%;
+  min-height: 100vh;
+  background: var(--background-offwhite-color);
+}
+
+.nav-all-boards,
+.todo-title,
+.doing-title,
+.done-title {
+  font-size: 12px;
+  letter-spacing: 2.4px;
+  color: var(--subheading-grey-color);
+  text-transform: uppercase;
+}
+
+
+/* =========== Nav Section =========== */
+.side-nav-bar {
+  display: flex;
+  flex-direction: column;
+  width: 300px; /*Side-nav-bar gets a fixed width*/
+  height: 100vh;
+  border-right: 1px solid var(--border-grey-color); /*Grey divider between side-nav-bar and main-container */
+  background-color: var(--background-white-color);
+}
+
+.nav-logo-div {
+  margin: 30px 113px 54px 34px; /* Space around kanban logo */
+}
+
+.nav-boards-div {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-all-boards {
+  padding: 0 12px 0 40px; /*Space around all boards title*/
+}
+
+.nav-toggle {
+  font-family: inherit;
+  font-weight: bold;
+  border: none;
+  font-size: 15px;
+  color: var(--background-white-color);
+  display: flex;
+  align-items: center; /*align launch title and toggle*/
+  padding: 28px 12px 28px 40px; /*Space around launch title to align with All-boards title*/
+  width: 276px;
+  height: 48px;
+  background: var(--main-theme-color);
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+  cursor: pointer;
+}
+
+
+/* =========== Main Layout =========== */
+.main-layout-container {
+  flex: 1; /*Allows main-layout to fill remain space of body*/
+  overflow-x: hidden; /*Prevent horizontal scroll*/
+}
+
+
+/* =========== Header Section =========== */
+.launch-header {
+  display: flex;
+  padding: 0 35px 0 30px;
+  background-color: var(--background-white-color);
+  height: 97px;
+  border-bottom: 1px solid var(--border-grey-color);
+}
+
+.launch-header-div {
+  display: flex;
+  align-items: center;
+}
+
+.favicon-mobile {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px; /*Space between favicon and launch title*/
+  display: none; /*Favicon hidden on desktop screens*/
+}
+
+
+/* =========== Card grid =========== */
+.main-tasks-container {
+  display: flex;
+  flex-direction: column; 
+  padding-left: 35px;
+  padding-right: 20px;
+}
+
+.tasks-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 304px)); /*3 columns with max size*/
+  gap: 20px; /*Space between columns*/
+}
+
+.column-div {
+  display: flex;
+  flex-direction: column;
+  flex: 1; 
+  gap: 20px; /*gap between todo, doing, done status and top cards*/
+}
+
+
+/* =========== TODO, Doing, Done status =========== */
+.todo-status,
+.doing-status,
+.done-status {
+  display: flex;
+  width: 120px;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.todo-title,
+.doing-title,
+.done-title {
+  width: 90px;
+  margin: 0 auto;
+}
+
+.todo-dot,
+.doing-dot,
+.done-dot {
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  margin: auto;
+}
+
+.todo-dot {
+  background-color: var(--todo-dot-color);
+}
+
+.doing-dot {
+  background-color: var(--doing-dot-color);
+}
+
+.done-dot {
+  background-color: var(--done-dot-color);
+}
+
+
+/* =========== Task Cards =========== */
+.card {
+  background-color: var(--background-white-color);
+  border-radius: 8px;
+  display: flex;
+  align-items: center; /*center task titles in center of card*/
+  padding-left: 15px;
+  width: 100%;
+  height: 60px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+
+
+/* =========== Responsive styles =========== */
+@media (max-width: 1023px) {
+  .side-nav-bar {
+    display: none; /* Hide side-nav-bar tablets and smaller screens*/
+  }
+
+  .favicon-mobile {
+    display: revert;
+  }
+
+  .main-tasks-container {
+    align-items: center; /*Ensures columns centered horizontally on smaller screens*/
+    padding: 0;
+    width: 100%;
+  }
+
+  .tasks-grid {
+    grid-template-columns: repeat(2, minmax(0, 360px));
+    gap: 0;
+  }
+
+  .column-div {
+    padding: 24px; /*Ensures card columns are not tight against each other*/
+  }
+
+  .todo {
+    padding-bottom: 10px;
+  }
+
+   .doing {
+    padding-left: 10px; /*Removes double spacing between todo and doing columns*/
+  }
+
+   .done {
+    padding-top: 0; /*Removes double spacing between todo and done columns*/
+  }
+}
+
+@media (max-width: 580px) {
+  .favicon-mobile {
+    display: revert;
+  }
+
+  .tasks-grid {
+    grid-template-columns: minmax(0, 380px); /*Stack columns in a single column on mobile view*/
+  }
+
+  .column-div {
+    padding: 24px; /*Ensures card columns are not tight against each other*/
+  }
+
+  .todo, .doing, .done {
+    padding-bottom: 0; /*Removes double spacing between todo and doing, doing and done columns*/
+  }
+ 
+}
