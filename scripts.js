@@ -39,3 +39,36 @@ function clearExistingTasks() {
     container.innerHTML = "";
   });
 }
+
+/**
+ * Shows all tasks from initial data to the UI.
+ * Groups tasks by status and adds them to their respective columns.
+ * @param {Array<Object>} tasks 
+ */
+
+function renderTasks(tasks) {
+  tasks.forEach((task) => {
+    const container = getTaskContainerByStatus(task.status);
+    if (container) {
+      const taskElement = createTaskElement(task);
+      container.appendChild(taskElement);
+    }
+  });
+}
+
+/**
+ * Opens the modal dialog with filled-in task details.
+ * @param {Object} task 
+ */
+function openTaskModal(task) {
+  const modal = document.getElementById("task-modal");
+  const titleInput = document.getElementById("task-title");
+  const descInput = document.getElementById("task-desc");
+  const statusSelect = document.getElementById("task-status");
+
+  titleInput.value = task.title;
+  descInput.value = task.description;
+  statusSelect.value = task.status;
+
+  modal.showModal();
+}
