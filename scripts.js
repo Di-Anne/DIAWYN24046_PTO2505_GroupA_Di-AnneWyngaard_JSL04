@@ -28,15 +28,18 @@ function getContainerByStatus(status) {
 // Remove all existing tasks from the board... WHY??
 
 
+// Render all tasks into the correct columns
+function renderTasks(initialTasks) {
+  initialTasks.forEach(task => {
+    const taskContainer = getContainerByStatus(task.status);
+    if (container) {
+      taskContainer.appendChild(createTaskElement(task));
+    }
+  });
+}
 
 
-
-
-
-
-
-
-// Show modal and present prefilled-fields 
+// Render modal and present prefilled-fields 
 function openTaskModal(task) {
   const modal = document.getElementById('task-modal');
   const titleInput = document.getElementById('task-title');
@@ -46,6 +49,16 @@ function openTaskModal(task) {
   titleInput.value = task.title;
   descripInput.value = task.description;
   statusSelect.value = task.status;
-
+  // Built-in function to show modal and block rest of page
   modal.showModal();
 }
+
+function closeTaskModal(task) {
+  const modal = document.getElementById('task-modal');
+  const closeBtn = document.getElementById("close-modal-btn");
+
+  closeBtn.addEventsListener("click", () => {
+    modal.close();
+  });
+}
+
