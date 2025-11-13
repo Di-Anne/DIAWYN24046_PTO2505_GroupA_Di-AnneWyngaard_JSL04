@@ -1,10 +1,11 @@
-import { initialTasks } from "./initialData.js";
+import { initialTasks } from "initialData.js";
 
 // Create one task element in the DOM
 function createTaskElement(task) {
   const taskElement = document.createElement('div');
-  taskElement.className = "task";
+  taskElement.className = "task-div";
   taskElement.textContent = task.title;
+  taskElement.dataset.taskId = task.id;
 
   taskElement.addEventListener("click", () => {
    openTaskModal(task);
@@ -14,26 +15,26 @@ function createTaskElement(task) {
 }
 
 // Find the column for a given status of the task object
-function getContainerByStatus(status) {
+function getTaskContainerByStatus(status) {
   // Find the column for the status
-  const columnDiv = document.querySelector(`.column-div[data-status="${status}"]`);
-  if (!columnDiv) {
-    return null;
-  }
-  // Within that column, find the container that holds tasks
-  const taskContainer = columnDiv.querySelector('.task-container');
-  return taskContainer; 
+  const column = document.querySelector(`.column-div[data-status="${status}"]`);
+  return column ? column.querySelector(".tasks-container") : null;
 }
 
 // Remove all existing tasks from the board... WHY??
-
+function clearExistingTasks() {
+  document.querySelectorAll(".task-container").forEach((container) => {
+    container.innerHTML = "";
+  });
+}
 
 // Render all tasks into the correct columns
 function renderTasks(initialTasks) {
   initialTasks.forEach(task => {
-    const taskContainer = getContainerByStatus(task.status);
+    const container = getTaskContainerByStatus(task.status);
     if (container) {
-      taskContainer.appendChild(createTaskElement(task));
+      const taskElement = createTaskElement(task);
+      container.appendChild(taskElement);
     }
   });
 }
@@ -53,7 +54,7 @@ function openTaskModal(task) {
   modal.showModal();
 }
 
-function closeTaskModal(task) {
+function closeTaskModal() {
   const modal = document.getElementById('task-modal');
   const closeBtn = document.getElementById("close-modal-btn");
 
@@ -62,3 +63,12 @@ function closeTaskModal(task) {
   });
 }
 
+// Initializes the task board and modal handlers
+function initTaskBoard() {
+  clearExistingTasks();
+  renderTasks(initialTasks);
+  closeTaskModal();
+}
+
+// Wait until DOM is fully loaded
+document.addEventListener("DOMContentLoaded", initTaskBoard);
