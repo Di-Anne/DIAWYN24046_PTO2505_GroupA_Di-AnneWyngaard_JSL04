@@ -13,6 +13,23 @@ function createTaskElement(task) {
   return taskElement; 
 }
 
+// Find the column for a given status of the task object
+function getContainerByStatus(status) {
+  // Find the column for the status
+  const columnDiv = document.querySelector(`.column-div[data-status="${status}"]`);
+  if (!columnDiv) {
+    return null;
+  }
+  // Within that column, find the container that holds tasks
+  const taskContainer = columnDiv.querySelector('.task-container');
+  return taskContainer; 
+}
+
+// Remove all existing tasks from the board... WHY??
+
+
+
+
 
 
 
