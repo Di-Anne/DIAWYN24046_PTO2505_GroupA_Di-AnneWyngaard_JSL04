@@ -1,4 +1,4 @@
-import { initialTasks } from "initialData.js";
+import { initialTasks } from "./initialData.js";
 
 // Create one task element in the DOM
 function createTaskElement(task) {
