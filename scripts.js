@@ -17,8 +17,13 @@ function createTaskElement(task) {
 // Find the column for a given status of the task object
 function getTaskContainerByStatus(status) {
   // Find the column for the status
-  const column = document.querySelector(`.column-div[data-status="${status}"]`);
-  return column ? column.querySelector(".tasks-container") : null;
+  const columnDiv = document.querySelector(`.column-div[data-status="${status}"]`);
+  if (!columnDiv) {
+    return null;
+  }
+  
+  const tasksContainer = columnDiv.querySelector('.tasks-container');
+  return tasksContainer;
 }
 
 // Remove all existing tasks from the board... WHY??
@@ -56,9 +61,9 @@ function openTaskModal(task) {
 
 function closeTaskModal() {
   const modal = document.getElementById('task-modal');
-  const closeBtn = document.getElementById("close-modal-btn");
+  const closeBtn = document.getElementById("close-btn");
 
-  closeBtn.addEventsListener("click", () => {
+  closeBtn.addEventListener("click", () => {
     modal.close();
   });
 }
@@ -72,3 +77,4 @@ function initTaskBoard() {
 
 // Wait until DOM is fully loaded
 document.addEventListener("DOMContentLoaded", initTaskBoard);
+
