@@ -83,15 +83,12 @@
             <h3>Task</h3>
             <button id="close-btn">&times;</button>
           </div>
-
           <label for="task-title">Title</label>
-          <input type="text" id="task-title" required/>
-
+          <input type="text" id="task-title" name="title" required/>
           <label for="task-descrip">Description</label>
-          <textarea id="task-descrip" row="4"></textarea>
-
+          <textarea id="task-descrip" row="4" name="sescription"></textarea>
           <label for="task-status">Satus</label>
-          <select id="task-status" required>
+          <select id="task-status" name="status" required>
             <option value="todo">todo</option>
             <option value="doing">doing</option>
             <option value="done">done</option>
