@@ -169,7 +169,7 @@ body {
 
 
 /* =========== Task Cards =========== */
-.card {
+.task {
   background-color: var(--background-white-color);
   border-radius: 8px;
   display: flex;
