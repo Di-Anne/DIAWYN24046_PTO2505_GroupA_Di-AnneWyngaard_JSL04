@@ -183,7 +183,7 @@ body {
 }
 
 /* =========== Modal styles =========== */
-* Remove default dialog styles */
+/* Remove default dialog styles */
 dialog {
   position: fixed;
 
@@ -212,19 +212,19 @@ dialog {
 }
 
 /* Header */
-.modal-header {
+#modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 16px;
 }
 
-.modal-header h3 {
+#modal-header h3 {
   margin: 0;
   font-size: 1.125rem;
 }
 
-.close-btn {
+#close-btn {
   background: none;
   border: none;
   font-size: 2.5rem;
@@ -235,12 +235,12 @@ dialog {
   transition-delay: 0.1s; /* Delay before scaling */
 }
 
-.close-btn:hover {
+#close-btn:hover {
   transform: scale(1.15);
   font-weight: 600;
 }
 
-.close-btn:focus {
+#close-btn:focus {
   outline: none;
 }
 

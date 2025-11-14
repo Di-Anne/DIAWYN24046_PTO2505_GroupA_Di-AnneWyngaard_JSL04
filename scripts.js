@@ -1,39 +1,55 @@
 import { initialTasks } from "./initialData.js";
 
-// Create one task element in the DOM
+// Wait until DOM is fully loaded
+window.addEventListener("load", initTaskBoard);
+
+/**
+ * Creates a single task element in DOM
+ * @param {Object} task - task object
+ * @param {string} task.title - title of task object 
+ * @returns {HTML element} The created task element
+ */
 function createTaskElement(task) {
   const taskElement = document.createElement('div');
   taskElement.className = "task-div";
   taskElement.textContent = task.title;
-  taskElement.dataset.taskId = task.id;
 
   taskElement.addEventListener("click", () => {
    openTaskModal(task);
   });
-
   return taskElement; 
 }
 
-// Find the column for a given status of the task object
+/**
+ * Finds the task container based on task status
+ * @param {string} status - status of task object
+ * @returns {HTML element|null} - returns task container of element or null if not found
+ */
 function getTaskContainerByStatus(status) {
-  // Find the column for the status
+  // Find the column based on task status
   const columnDiv = document.querySelector(`.column-div[data-status="${status}"]`);
   if (!columnDiv) {
     return null;
   }
-  
-  const tasksContainer = columnDiv.querySelector('.tasks-container');
-  return tasksContainer;
+  // Now get the task-container of that element 
+  const taskContainer = columnDiv.querySelector('.task-container');
+  return taskContainer;
 }
 
-// Remove all existing tasks from the board... WHY??
+/**
+ * Remove all existing task elements from its task containers
+ */
 function clearExistingTasks() {
   document.querySelectorAll(".task-container").forEach((container) => {
     container.innerHTML = "";
   });
 }
 
-// Render all tasks into the correct columns
+/**
+ * Render tasks from initial tasks array to UI
+ * @param {Array<Object>} initialTasks - Inital array with task objects
+ * @param {string} task.status - Status of task object
+ */
 function renderTasks(initialTasks) {
   initialTasks.forEach(task => {
     const container = getTaskContainerByStatus(task.status);
@@ -44,8 +60,10 @@ function renderTasks(initialTasks) {
   });
 }
 
-
-// Render modal and present prefilled-fields 
+/**
+ * Opens task Modal
+ * @param {Object} task - the task object to display in modal
+ */
 function openTaskModal(task) {
   const modal = document.getElementById('task-modal');
   const titleInput = document.getElementById('task-title');
@@ -59,6 +77,9 @@ function openTaskModal(task) {
   modal.showModal();
 }
 
+/**
+ * Closes task Modal
+ */
 function closeTaskModal() {
   const modal = document.getElementById('task-modal');
   const closeBtn = document.getElementById("close-btn");
@@ -68,13 +89,14 @@ function closeTaskModal() {
   });
 }
 
-// Initializes the task board and modal handlers
+/**
+ * Initializes task boads and modal
+ */
 function initTaskBoard() {
   clearExistingTasks();
   renderTasks(initialTasks);
   closeTaskModal();
 }
 
-// Wait until DOM is fully loaded
-document.addEventListener("DOMContentLoaded", initTaskBoard);
+
 
