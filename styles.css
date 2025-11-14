@@ -194,7 +194,7 @@ dialog {
 
 /* Style the modal background */
 #task-modal::backdrop {
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.6);
 }
 
 #task-modal {
@@ -206,7 +206,7 @@ dialog {
   max-width: 600px;
   padding: 24px;
   background-color: #fff;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
 
 /* Header */
